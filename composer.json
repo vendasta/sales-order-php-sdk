@@ -13,6 +13,8 @@
     "psr-4": {
       "Vendasta\\SalesOrders\\V1\\": "./src",
       "SalesOrders\\V1\\": "./generated/grpc/SalesOrders/V1",
+      "GPBMetadata\\MarketplaceApps\\V1\\": "./generated/grpc/GPBMetadata/MarketplaceApps/V1",
+      "GPBMetadata\\Sales\\V1\\": "./generated/grpc/GPBMetadata/Sales/V1",
       "GPBMetadata\\SalesOrders\\V1\\": "./generated/grpc/GPBMetadata/SalesOrders/V1"
     }
   },
