@@ -34,7 +34,7 @@ class SalesOrdersClientTest extends TestCase
         $currentRevenue->setRevenueComponents($revenueComponents);
 
         $lineItem->setIsTrial(false);
-        $lineItem->setCurrencyCode('USD');
+        $lineItem->setCurrencyCode('ZAR');
 
         return $lineItem;
     }
@@ -45,7 +45,7 @@ class SalesOrdersClientTest extends TestCase
         $field->setFieldId($fieldId);
         $field->setFieldType(FieldType::TEXT);
         $field->setLabel($fieldLabel);
-        $field->setAnswer($answer);
+        $field->setAnswer("\"" . $answer . "\"");
 
         return $field;
     }
@@ -61,7 +61,7 @@ class SalesOrdersClientTest extends TestCase
         // Setup the order
         $order = new Order();
         $req->setOrder($order);
-        $order->setBusinessId("AG-GWMVH8HVJP");
+        $order->setBusinessId("AG-BSK4V5SFCN");
         $order->setMarketId('default');
         $order->setPartnerId('ABC');
         $now = new Timestamp();
@@ -72,6 +72,7 @@ class SalesOrdersClientTest extends TestCase
         $gSuite = self::buildLineItem('MP-6XDHVMQ84K4THNNP2Z7W2GC28VLHRC4Q');
         $goDaddy = self::buildLineItem('MP-NNTJMBF6HPXR5XXC2JKCFWKJ64VZLBFQ');
         $lineItems = array($gSuite, $goDaddy);
+//        $lineItems = array($gSuite);
         $order->setLineItems($lineItems);
 
         // Setup the common fields
@@ -91,7 +92,7 @@ class SalesOrdersClientTest extends TestCase
         $businessPhoneNumberField = self::buildField('business_phone_number', 'Business Phone Number', '(312) 923-9999');
         $businessPhoneNumber->setField($businessPhoneNumberField);
 
-        $commonFields = array($businessID, $businessID);
+        $commonFields = array($businessID, $businessID, $businessAddress, $businessPhoneNumber);
         $order->setCommonFields($commonFields);
 
         // Setup G Suite custom fields
@@ -99,10 +100,10 @@ class SalesOrdersClientTest extends TestCase
         $gSuiteCustomFields->setProductId('MP-6XDHVMQ84K4THNNP2Z7W2GC28VLHRC4Q');
 
         $gSuiteDomain = self::buildField('domain', 'Domain Name', 'coreyhickson200722-2.com');
-        $gSuiteUsername = self::buildField('username', 'Admin username', 'chickson200722');
+        $gSuiteUsername = self::buildField('username', 'Admin username', 'chickson2007222');
         $gSuiteAdminFirstName = self::buildField('admin_first_name', 'Admin First name', 'Corey');
         $gSuiteAdminLastName = self::buildField('admin_last_name', 'Admin Last name', 'Hickson');
-        $gSuiteAlternateEmail = self::buildField('alternate_email', 'Admin alternate email', 'chickson+200722@vendasta.com');
+        $gSuiteAlternateEmail = self::buildField('alternate_email', 'Admin alternate email', 'chickson+2007222@vendasta.com');
 
         $gSuiteFields = array($gSuiteDomain, $gSuiteUsername, $gSuiteAdminFirstName, $gSuiteAdminLastName, $gSuiteAlternateEmail);
         $gSuiteCustomFields->setFields($gSuiteFields);
@@ -125,6 +126,7 @@ class SalesOrdersClientTest extends TestCase
 
         // Add custom fields to order
         $customFields = array($gSuiteCustomFields, $goDaddyCustomFields);
+//        $customFields = array($gSuiteCustomFields);
         $order->setCustomFields($customFields);
 
         try {
@@ -132,6 +134,7 @@ class SalesOrdersClientTest extends TestCase
         } catch (\Vendasta\Vax\SDKException $e) {
             self::fail($e);
         }
+        echo $resp->serializeToString();
         self::assertNotEmpty(
             $client,
             'expected order ID'
