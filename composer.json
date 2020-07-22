@@ -1,5 +1,5 @@
 {
-  "name": "SalesOrders",
+  "name": "vendasta/sales-orders",
   "description": "PHP library for Vendasta's SalesOrders service",
   "type": "library",
   "require": {
