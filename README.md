@@ -52,4 +52,28 @@ $client = new Vendasta\SalesOrders\V1\SalesOrdersClient($environment);
 
 Notice that the environment will be set to DEMO if it is not specified.
 
-TODO: Include example on how to call the CreateAndActivateOrder endpoint
+## Creating and activate an order
+
+Creating and activating an order on a business will purchase the appropriate products, included are helper functions which will allow for G Suite and GoDaddy provisioning.
+
+```php
+// Create the request
+$req = new CreateAndActivateOrderRequest();
+
+// Create the line items
+$gSuite = SalesOrdersUtils::buildLineItem('MP-6XDHVMQ84K4THNNP2Z7W2GC28VLHRC4Q');
+$goDaddy = SalesOrdersUtils::buildLineItem('MP-NNTJMBF6HPXR5XXC2JKCFWKJ64VZLBFQ');
+$lineItems = array($gSuite, $goDaddy);
+
+// Create the custom field
+$gSuiteCustomField = SalesOrdersUtils::buildGSuiteCustomField("MP-6XDHVMQ84K4THNNP2Z7W2GC28VLHRC4Q", 'testdomain123.com', 'adminusername', 'First', 'Last', 'example@email.com');
+$goDaddyCustomField = SalesOrdersUtils::buildGoDaddyCustomFields("MP-NNTJMBF6HPXR5XXC2JKCFWKJ64VZLBFQ", "testdomain123.com", "example@email.com", "First", "Last", "3065555555", "example@email.com", "First", "Last");
+$customFields = array($gSuiteCustomField, $goDaddyCustomField);
+
+// Create the order
+$order = SalesOrdersUtils::buildOrder("ABC", "AG-123", $lineItems, $customFields);
+$req->setOrder($order);
+
+// Call CreateAndActivateOrder
+$resp = $client->CreateAndActivateOrder($req);
+```
