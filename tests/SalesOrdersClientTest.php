@@ -26,12 +26,12 @@ class SalesOrdersClientTest extends TestCase
         $lineItems = array($gSuite, $goDaddy);
 
         // Create the custom field
-        $gSuiteCustomField = buildGSuiteCustomField("MP-6XDHVMQ84K4THNNP2Z7W2GC28VLHRC4Q", 'testdomain123.com', 'adminusername', 'First', 'Last', 'example@email.com');
-        $goDaddyCustomField = buildGoDaddyCustomFields("MP-NNTJMBF6HPXR5XXC2JKCFWKJ64VZLBFQ", "testdomain123.com", "example@email.com", "First", "Last", "3065555555", "example@email.com", "First", "Last");
+        $gSuiteCustomField = SalesOrdersUtils::buildGSuiteCustomField("MP-6XDHVMQ84K4THNNP2Z7W2GC28VLHRC4Q", 'testdomain123.com', 'adminusername', 'First', 'Last', 'example@email.com');
+        $goDaddyCustomField = SalesOrdersUtils::buildGoDaddyCustomFields("MP-NNTJMBF6HPXR5XXC2JKCFWKJ64VZLBFQ", "testdomain123.com", "example@email.com", "First", "Last", "3065555555", "example@email.com", "First", "Last");
         $customFields = array($gSuiteCustomField, $goDaddyCustomField);
 
         // Create the order
-        $order = buildOrder("ABC", "AG-123", $lineItems, $customFields);
+        $order = SalesOrdersUtils::buildOrder("ABC", "AG-123", $lineItems, $customFields);
         $req->setOrder($order);
 
         try {
