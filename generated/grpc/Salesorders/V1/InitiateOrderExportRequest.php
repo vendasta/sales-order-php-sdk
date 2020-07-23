@@ -45,6 +45,14 @@ class InitiateOrderExportRequest extends \Google\Protobuf\Internal\Message
      * <code>string try_again_url = 4;</code>
      */
     private $try_again_url = '';
+    /**
+     * <pre>
+     * The selected option for how the data should be formatted in the exported file
+     * </pre>
+     *
+     * <code>.salesorders.v1.InitiateOrderExportRequest.DataFormatOption selected_data_format = 5;</code>
+     */
+    private $selected_data_format = 0;
 
     public function __construct() {
         \GPBMetadata\SalesOrders\V1\Api::initOnce();
@@ -149,6 +157,31 @@ class InitiateOrderExportRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->try_again_url = $var;
+    }
+
+    /**
+     * <pre>
+     * The selected option for how the data should be formatted in the exported file
+     * </pre>
+     *
+     * <code>.salesorders.v1.InitiateOrderExportRequest.DataFormatOption selected_data_format = 5;</code>
+     */
+    public function getSelectedDataFormat()
+    {
+        return $this->selected_data_format;
+    }
+
+    /**
+     * <pre>
+     * The selected option for how the data should be formatted in the exported file
+     * </pre>
+     *
+     * <code>.salesorders.v1.InitiateOrderExportRequest.DataFormatOption selected_data_format = 5;</code>
+     */
+    public function setSelectedDataFormat($var)
+    {
+        GPBUtil::checkEnum($var, \Salesorders\V1\InitiateOrderExportRequest_DataFormatOption::class);
+        $this->selected_data_format = $var;
     }
 
 }

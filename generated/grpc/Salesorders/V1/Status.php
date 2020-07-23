@@ -14,58 +14,114 @@ namespace Salesorders\V1;
 class Status
 {
     /**
+     * <pre>
+     * Submitted is the status when an order is ready for admin approval
+     * </pre>
+     *
      * <code>SUBMITTED = 0;</code>
      */
     const SUBMITTED = 0;
     /**
+     * <pre>
+     * Approved is the status when an order is has been approved by an admin
+     * </pre>
+     *
      * <code>APPROVED = 1;</code>
      */
     const APPROVED = 1;
     /**
+     * <pre>
+     * Declined is the status when an order is has been declined by an admin or a smb
+     * </pre>
+     *
      * <code>DECLINED = 2;</code>
      */
     const DECLINED = 2;
     /**
+     * <pre>
+     * Drafted is currently not used but would be the state the order can be created in before it's sent to someone else
+     * </pre>
+     *
      * <code>DRAFTED = 3;</code>
      */
     const DRAFTED = 3;
     /**
+     * <pre>
+     * Fulfilled is the status when an order has had all of the products activated
+     * </pre>
+     *
      * <code>FULFILLED = 4;</code>
      */
     const FULFILLED = 4;
     /**
+     * <pre>
+     * Processing is the status when an order is currently activating the products
+     * </pre>
+     *
      * <code>PROCESSING = 5;</code>
      */
     const PROCESSING = 5;
     /**
+     * <pre>
+     * ActivationErrors is the status when an order is has encountered an error when activating products
+     * </pre>
+     *
      * <code>ACTIVATION_ERRORS = 6;</code>
      */
     const ACTIVATION_ERRORS = 6;
     /**
+     * <pre>
+     * Archived is the status to use when hiding the orders from the ui unless explicitly asked for
+     * </pre>
+     *
      * <code>ARCHIVED = 7;</code>
      */
     const ARCHIVED = 7;
     /**
+     * <pre>
+     * SubmittedForCustomerApproval is the status when an order has been sent to a SMB to approve
+     * </pre>
+     *
      * <code>SUBMITTED_FOR_CUSTOMER_APPROVAL = 8;</code>
      */
     const SUBMITTED_FOR_CUSTOMER_APPROVAL = 8;
     /**
+     * <pre>
+     * CancellationRequested is the status when a sales person requests to cancel a full order
+     * </pre>
+     *
      * <code>CANCELLATION_REQUESTED = 9;</code>
      */
     const CANCELLATION_REQUESTED = 9;
     /**
+     * <pre>
+     * Cancelled is the status when a after an admin has approved a Cancellation
+     * </pre>
+     *
      * <code>CANCELLED = 10;</code>
      */
     const CANCELLED = 10;
     /**
+     * <pre>
+     * ScheduledActivation is the status of an order after the admin requests to activate products on the contract start date
+     * </pre>
+     *
      * <code>SCHEDULED_ACTIVATION = 11;</code>
      */
     const SCHEDULED_ACTIVATION = 11;
     /**
+     * <pre>
+     * AwaitingPayment is the status of a BIY order on creation before we attempt to charge
+     * </pre>
+     *
      * <code>AWAITING_PAYMENT = 12;</code>
      */
     const AWAITING_PAYMENT = 12;
     /**
+     * <pre>
+     * ProcessingPayment is the status of a BIY order while waiting on confirmation for the charge
+     * </pre>
+     *
      * <code>PROCESSING_PAYMENT = 13;</code>
      */
     const PROCESSING_PAYMENT = 13;
