@@ -44,4 +44,35 @@ class SalesOrdersClientTest extends TestCase
             'expected order ID'
         );
     }
+
+    public function testCreateAndActivateOrderForAddon() {
+        // Setup the client
+        $environment = getenv("ENVIRONMENT");
+        if ($environment == null) {
+            $environment = "DEMO";
+        }
+        $client = new SalesOrdersClient($environment);
+
+        // Create the request
+        $req = new CreateAndActivateOrderRequest();
+        // Create the line items
+        $gSuite = SalesOrdersUtils::buildLineItem('MP-6XDHVMQ84K4THNNP2Z7W2GC28VLHRC4Q');
+        $gSuiteAddon = SalesOrdersUtils::buildLineItem('A-JMJX3KJPT5');
+        $lineItems = array(@$gSuite, $gSuiteAddon);
+
+        // Create the order
+        $order = SalesOrdersUtils::buildOrder("ABC", "AG-123", $lineItems, []);
+        $req->setOrder($order);
+
+        try {
+            $resp = $client->CreateAndActivateOrder($req);
+        } catch (SDKException $e) {
+            self::fail($e);
+        }
+        self::assertNotEmpty(
+            $resp->getOrderId(),
+            'expected order ID'
+        );
+
+    }
 }
