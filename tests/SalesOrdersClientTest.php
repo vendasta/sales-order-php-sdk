@@ -56,9 +56,8 @@ class SalesOrdersClientTest extends TestCase
         // Create the request
         $req = new CreateAndActivateOrderRequest();
         // Create the line items
-        $gSuite = SalesOrdersUtils::buildLineItem('MP-6XDHVMQ84K4THNNP2Z7W2GC28VLHRC4Q');
         $gSuiteAddon = SalesOrdersUtils::buildLineItem('A-JMJX3KJPT5');
-        $lineItems = array(@$gSuite, $gSuiteAddon);
+        $lineItems = array($gSuiteAddon);
 
         // Create the order
         $order = SalesOrdersUtils::buildOrder("ABC", "AG-123", $lineItems, []);
