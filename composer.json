@@ -12,7 +12,7 @@
   "autoload": {
     "psr-4": {
       "Vendasta\\SalesOrders\\V1\\": "./src",
-      "Salesorders\\V1\\": "./generated/grpc/SalesOrders/V1",
+      "Salesorders\\V1\\": "./generated/grpc/Salesorders/V1",
       "Sales\\V1\\": "./generated/grpc/Sales/V1",
       "GPBMetadata\\MarketplaceApps\\V1\\": "./generated/grpc/GPBMetadata/MarketplaceApps/V1",
       "GPBMetadata\\Sales\\V1\\": "./generated/grpc/GPBMetadata/Sales/V1",
