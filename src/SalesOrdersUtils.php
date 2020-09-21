@@ -48,15 +48,20 @@ class SalesOrdersUtils {
      * @param string $fieldId the ID of the field
      * @param string $fieldLabel the label of the field
      * @param string $answer the answer for this field on the Order
+     * @param int $fieldType the type of field this is. Use the FieldType enumerator. Defaults to Text field.
      * @return Field an initialized Field
      */
-    public static function buildField(string $fieldId, string $fieldLabel, string $answer): Field
+    public static function buildField(string $fieldId, string $fieldLabel, string $answer, int $fieldType = FieldType::TEXT): Field
     {
+        $formattedAnswer = $answer;
+        if ($fieldType === FieldType::TEXT || $fieldType === FieldType::TEXTAREA) {
+            $formattedAnswer = "\"" . $answer . "\"";
+        }
         $field = new Field();
         $field->setFieldId($fieldId);
-        $field->setFieldType(FieldType::TEXT);
+        $field->setFieldType($fieldType);
         $field->setLabel($fieldLabel);
-        $field->setAnswer("\"" . $answer . "\"");
+        $field->setAnswer($formattedAnswer);
 
         return $field;
     }
