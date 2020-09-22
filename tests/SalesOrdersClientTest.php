@@ -76,7 +76,7 @@ class SalesOrdersClientTest extends TestCase
         $customFields = array($gSuiteCustomField);
 
         // Create the order
-        $order = SalesOrdersUtils::buildOrder("ABC", "AG-WZ3WGGDB7F", $lineItems, $customFields);
+        $order = SalesOrdersUtils::buildOrder("PID", "AG-123", $lineItems, $customFields);
         $req->setOrder($order);
 
         try {
