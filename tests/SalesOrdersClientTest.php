@@ -7,6 +7,7 @@ use Salesorders\V1\FieldType;
 use Vendasta\SalesOrders\V1\SalesOrdersClient;
 use Vendasta\SalesOrders\V1\SalesOrdersUtils;
 use Vendasta\Vax\SDKException;
+use Salesorders\V1\GetSalesOrderRequest;
 
 class SalesOrdersClientTest extends TestCase
 {
@@ -117,6 +118,31 @@ class SalesOrdersClientTest extends TestCase
             $resp->getOrderId(),
             'expected order ID'
         );
+    }
 
+    public function testGetSalesOrder() {
+        // Setup the client
+        $environment = getenv("ENVIRONMENT");
+        if ($environment == null) {
+            $environment = "DEMO";
+        }
+        $client = new SalesOrdersClient($environment);
+
+        // Create the request
+        $req = new GetSalesOrderRequest();
+        // Create the line items
+        $req->setBusinessId("AG-TD7CKLPZK4");
+        $req->setOrderId("ORD-8NN7GVWR8V");
+
+        try {
+            $resp = $client->GetSalesOrder($req);
+        } catch (SDKException $e) {
+            self::fail($e);
+        }
+
+        self::assertNotEmpty(
+            $resp->getOrder(),
+            'expected order'
+        );
     }
 }
