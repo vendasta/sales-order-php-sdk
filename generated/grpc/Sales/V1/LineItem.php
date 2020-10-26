@@ -73,7 +73,7 @@ class LineItem extends \Google\Protobuf\Internal\Message
      */
     public function setAppKey(&$var)
     {
-        GPBUtil::checkMessage($var, \Sales\V1\LineItem_AppKey::class);
+        GPBUtil::checkMessage($var, \Sales\V1\LineItem\AppKey::class);
         $this->writeOneof(1, $var);
     }
 

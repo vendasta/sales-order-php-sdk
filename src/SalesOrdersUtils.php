@@ -4,7 +4,7 @@ namespace Vendasta\SalesOrders\V1;
 
 use Google\Protobuf\Timestamp;
 use Sales\V1\LineItem;
-use Sales\V1\LineItem_AppKey;
+use Sales\V1\LineItem\AppKey;
 use Sales\V1\Revenue;
 use Sales\V1\RevenueComponent;
 use Salesorders\V1\CustomField;
@@ -23,7 +23,7 @@ class SalesOrdersUtils {
     {
         $lineItem = new LineItem();
 
-        $appKey = new LineItem_AppKey();
+        $appKey = new AppKey();
         $appKey->setAppId($appId);
         $lineItem->setAppKey($appKey);
 
