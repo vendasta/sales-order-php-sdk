@@ -156,7 +156,7 @@ class SalesOrdersClientTest extends TestCase
         // Create second request to get first order
         $req2 = new GetSalesOrderRequest();
         $req2->setOrderId($resp1->getOrderId());
-        $req2->setBusinessId("AG-GPDTJKCPMD");
+        $req2->setBusinessId("AG-123");
         try {
             $resp2 = $client->GetSalesOrder($req2);
         } catch (SDKException $e) {
