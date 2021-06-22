@@ -106,41 +106,7 @@ class SalesOrdersClientTest extends TestCase
         // Create the line items
         $goDaddy = SalesOrdersUtils::buildLineItem('MP-NNTJMBF6HPXR5XXC2JKCFWKJ64VZLBFQ');
         $lineItems = array($goDaddy);
-        $zoneFile = "
-\$ORIGIN luckycharmsteam.com.
 
-; SOA Record
-@	3600	 IN 	SOA	ns39.domaincontrol.com.	dns.jomax.net. (
-					2021060800
-					28800
-					7200
-					604800
-					3600
-					) 
-
-; A Records
-@	3600	 IN 	A	104.154.100.138
-
-; CNAME Records
-www	3600	 IN 	CNAME	@
-_domainconnect	3600	 IN 	CNAME	_domainconnect.ss.domaincontrol.com.
-
-; MX Records
-
-; TXT Records
-@	1800	 IN 	TXT	\"google-site-verification=wUvRFCYFmKdWGSkk82winL_D_tvO0TKUnP3cCpPhgo8\"
-
-; SRV Records
-
-; AAAA Records
-
-; CAA Records
-
-; NS Records
-@	3600	 IN 	NS	ns39.domaincontrol.com.
-@	3600	 IN 	NS	ns40.domaincontrol.com.
-
-";
         $zoneFile = "\$ORIGIN luckycharmsteam.com.\\r\\n\\r\\n; SOA Record\\r\\n@\\t3600\\t IN \\tSOA\\tns39.domaincontrol.com.\\tdns.jomax.net. (\\r\\n\\t\\t\\t\\t\\t2021060800\\r\\n\\t\\t\\t\\t\\t28800\\r\\n\\t\\t\\t\\t\\t7200\\r\\n\\t\\t\\t\\t\\t604800\\r\\n\\t\\t\\t\\t\\t3600\\r\\n\\t\\t\\t\\t\\t) \\r\\n\\r\\n; A Records\\r\\n@\\t3600\\t IN \\tA\\t104.154.100.138\\r\\n\\r\\n; CNAME Records\\r\\nwww\\t3600\\t IN \\tCNAME\\t@\\r\\n_domainconnect\\t3600\\t IN \\tCNAME\\t_domainconnect.ss.domaincontrol.com.\\r\\n\\r\\n; MX Records\\r\\n\\r\\n; TXT Records\\r\\n@\\t1800\\t IN \\tTXT\\t\\\"google-site-verification=wUvRFCYFmKdWGSkk82winL_D_tvO0TKUnP3cCpPhgo8\\\"\\r\\n\\r\\n; SRV Records\\r\\n\\r\\n; AAAA Records\\r\\n\\r\\n; CAA Records\\r\\n\\r\\n; NS Records\\r\\n@\\t3600\\t IN \\tNS\\tns39.domaincontrol.com.\\r\\n@\\t3600\\t IN \\tNS\\tns40.domaincontrol.com.\\r\\n";
 
         // Create the custom field
