@@ -141,11 +141,10 @@ _domainconnect	3600	 IN 	CNAME	_domainconnect.ss.domaincontrol.com.
 @	3600	 IN 	NS	ns40.domaincontrol.com.
 
 ";
-        $zonefileEscaped = addslashes($zoneFile);
-        $zoneFile2 = "\n\$ORIGIN example.com.\\r\\n\\r\\n\\t;SOARecord\\r\\n\\t@\\t3600\\tIN\\tSOA\\tns39.domaincontrol.com.\\tdns.jomax.net.(\\r\\n\\t\\t2021060702\\r\\n\\t28800\\r\\n\\t7200\\r\\n\\t604800\\r\\n\\t3600\\r\\n\\t)\\r\\n\\r\\n\\t;ARecords\\r\\n\\t@\\t3600\\tIN\\tA\\t100.100.100.100\\r\\n\\r\\n\\t;CNAMERecords\\r\\n\\twww\\t3600\\tIN\\tCNAME\\t@\\r\\n\\t_domainconnect\\t3600\\tIN\\tCNAME\\t_domainconnect.ss.domaincontrol.com.\\r\\n\\r\\n\\t;MXRecords\\r\\n\\t@\\t3600\\t IN \\tMX\\t0\\tmail.example.com.\\r\\n\\r\\n\\t;TXTRecords\\r\\n\\r\\n\\t;SRVRecords\\r\\n\\t_sip._tcp.example.com.   86400 IN    SRV 10       60     5060 example.example.com.\\r\\n\\r\\n\\t;AAAARecords\\r\\n\\r\\n\\t;CAARecords\\r\\n\\r\\n\\t;NSRecords\\r\\n\\t@\\t3600\\tIN\\tNS\\tns10.domaincontrol.com.\\r\\n\\t@\\t3600\\tIN\\tNS\\tns11.domaincontrol.com.\\r\\n";
+        $zoneFile = "\$ORIGIN luckycharmsteam.com.\\r\\n\\r\\n; SOA Record\\r\\n@\\t3600\\t IN \\tSOA\\tns39.domaincontrol.com.\\tdns.jomax.net. (\\r\\n\\t\\t\\t\\t\\t2021060800\\r\\n\\t\\t\\t\\t\\t28800\\r\\n\\t\\t\\t\\t\\t7200\\r\\n\\t\\t\\t\\t\\t604800\\r\\n\\t\\t\\t\\t\\t3600\\r\\n\\t\\t\\t\\t\\t) \\r\\n\\r\\n; A Records\\r\\n@\\t3600\\t IN \\tA\\t104.154.100.138\\r\\n\\r\\n; CNAME Records\\r\\nwww\\t3600\\t IN \\tCNAME\\t@\\r\\n_domainconnect\\t3600\\t IN \\tCNAME\\t_domainconnect.ss.domaincontrol.com.\\r\\n\\r\\n; MX Records\\r\\n\\r\\n; TXT Records\\r\\n@\\t1800\\t IN \\tTXT\\t\\\"google-site-verification=wUvRFCYFmKdWGSkk82winL_D_tvO0TKUnP3cCpPhgo8\\\"\\r\\n\\r\\n; SRV Records\\r\\n\\r\\n; AAAA Records\\r\\n\\r\\n; CAA Records\\r\\n\\r\\n; NS Records\\r\\n@\\t3600\\t IN \\tNS\\tns39.domaincontrol.com.\\r\\n@\\t3600\\t IN \\tNS\\tns40.domaincontrol.com.\\r\\n";
 
         // Create the custom field
-        $goDaddyCustomField = SalesOrdersUtils::buildGoDaddyCustomFieldsForTransfer("MP-NNTJMBF6HPXR5XXC2JKCFWKJ64VZLBFQ", "testdomain123.com", "example@email.com", "First", "Last", "3065555555", "example@email.com", "First", "Last", "AuthCode", $zonefileEscaped, "NameServer1", "NameServer2", "NameServer3");
+        $goDaddyCustomField = SalesOrdersUtils::buildGoDaddyCustomFieldsForTransfer("MP-NNTJMBF6HPXR5XXC2JKCFWKJ64VZLBFQ", "testdomain123.com", "example@email.com", "First", "Last", "3065555555", "example@email.com", "First", "Last", "AuthCode", $zoneFile, "NameServer1", "NameServer2", "NameServer3");
         $customFields = array($goDaddyCustomField);
 
         // Create the order
