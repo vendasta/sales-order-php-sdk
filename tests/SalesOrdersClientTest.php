@@ -107,8 +107,7 @@ class SalesOrdersClientTest extends TestCase
         $goDaddy = SalesOrdersUtils::buildLineItem('MP-NNTJMBF6HPXR5XXC2JKCFWKJ64VZLBFQ');
         $lineItems = array($goDaddy);
 
-        $zoneFile = "\$ORIGIN luckycharmsteam.com.\\r\\n\\r\\n; SOA Record\\r\\n@\\t3600\\t IN \\tSOA\\tns39.domaincontrol.com.\\tdns.jomax.net. (\\r\\n\\t\\t\\t\\t\\t2021060800\\r\\n\\t\\t\\t\\t\\t28800\\r\\n\\t\\t\\t\\t\\t7200\\r\\n\\t\\t\\t\\t\\t604800\\r\\n\\t\\t\\t\\t\\t3600\\r\\n\\t\\t\\t\\t\\t) \\r\\n\\r\\n; A Records\\r\\n@\\t3600\\t IN \\tA\\t104.154.100.138\\r\\n\\r\\n; CNAME Records\\r\\nwww\\t3600\\t IN \\tCNAME\\t@\\r\\n_domainconnect\\t3600\\t IN \\tCNAME\\t_domainconnect.ss.domaincontrol.com.\\r\\n\\r\\n; MX Records\\r\\n\\r\\n; TXT Records\\r\\n@\\t1800\\t IN \\tTXT\\t\\\"google-site-verification=wUvRFCYFmKdWGSkk82winL_D_tvO0TKUnP3cCpPhgo8\\\"\\r\\n\\r\\n; SRV Records\\r\\n\\r\\n; AAAA Records\\r\\n\\r\\n; CAA Records\\r\\n\\r\\n; NS Records\\r\\n@\\t3600\\t IN \\tNS\\tns39.domaincontrol.com.\\r\\n@\\t3600\\t IN \\tNS\\tns40.domaincontrol.com.\\r\\n";
-
+        $zoneFile = '$ORIGIN example.com.\\r\\n\\r\\n; SOA Record\\r\\n@\\t3600\\t IN \\tSOA\\tns10.domaincontrol.com.\\tdns.example.net. (\\r\\n\\t\\t\\t\\t\\t1\\r\\n\\t\\t\\t\\t\\t900\\r\\n\\t\\t\\t\\t\\t7200\\r\\n\\t\\t\\t\\t\\t604800\\r\\n\\t\\t\\t\\t\\t3600\\r\\n\\t\\t\\t\\t\\t) \\r\\n\\r\\n; A Records\\r\\n@\\t3600\\t IN \\tA\\t100.100.100.100\\r\\n\\r\\n; CNAME Records\\r\\nwww\\t3600\\t IN \\tCNAME\\t@\\r\\n\\r\\n; MX Records\\r\\n\\r\\n; TXT Records\\r\\n@\\t1800\\t IN \\tTXT\\t\\"MS=ms1111111\\"\\r\\n\\r\\n; SRV Records\\r\\n\\r\\n; AAAA Records\\r\\n\\r\\n; CAA Records\\r\\n\\r\\n; NS Records\\r\\n@\\t3600\\t IN \\tNS\\tns39.domaincontrol.com.\\r\\n@\\t3600\\t IN \\tNS\\tns40.domaincontrol.com.\\r\\n\\r\\n';
         // Create the custom field
         $goDaddyCustomField = SalesOrdersUtils::buildGoDaddyCustomFieldsForTransfer("MP-NNTJMBF6HPXR5XXC2JKCFWKJ64VZLBFQ", "testdomain123.com", "example@email.com", "First", "Last", "3065555555", "example@email.com", "First", "Last", "AuthCode", $zoneFile, "NameServer1", "NameServer2", "NameServer3");
         $customFields = array($goDaddyCustomField);
@@ -143,7 +142,7 @@ class SalesOrdersClientTest extends TestCase
         $lineItems = array($gSuiteAddon);
 
         // Create the order
-        $order = SalesOrdersUtils::buildOrder("ABC", "AG-123", $lineItems, []);
+        $order = SalesOrdersUtils::buildOrder("ABC", "AG-QWSGCJHZSL", $lineItems, []);
         $req->setOrder($order);
 
         try {
