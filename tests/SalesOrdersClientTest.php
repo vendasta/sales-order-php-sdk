@@ -113,7 +113,7 @@ class SalesOrdersClientTest extends TestCase
         $customFields = array($goDaddyCustomField);
 
         // Create the order
-        $order = SalesOrdersUtils::buildOrder("VNDR", "AG-123", $lineItems, $customFields);
+        $order = SalesOrdersUtils::buildOrder("ABC", "AG-123", $lineItems, $customFields);
         $req->setOrder($order);
 
         try {
@@ -142,7 +142,7 @@ class SalesOrdersClientTest extends TestCase
         $lineItems = array($gSuiteAddon);
 
         // Create the order
-        $order = SalesOrdersUtils::buildOrder("ABC", "AG-QWSGCJHZSL", $lineItems, []);
+        $order = SalesOrdersUtils::buildOrder("ABC", "AG-123", $lineItems, []);
         $req->setOrder($order);
 
         try {
