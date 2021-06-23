@@ -91,6 +91,42 @@ class SalesOrdersClientTest extends TestCase
         );
     }
 
+    public function testCreateAndActivateGoDaddyTransferOrder()
+    {
+        // Setup the client
+        $environment = getenv("ENVIRONMENT");
+        if ($environment == null) {
+            $environment = "DEMO";
+        }
+        $client = new SalesOrdersClient($environment);
+
+        // Create the request
+        $req = new CreateAndActivateOrderRequest();
+
+        // Create the line items
+        $goDaddy = SalesOrdersUtils::buildLineItem('MP-NNTJMBF6HPXR5XXC2JKCFWKJ64VZLBFQ');
+        $lineItems = array($goDaddy);
+
+        $zoneFile = '$ORIGIN example.com.\\r\\n\\r\\n; SOA Record\\r\\n@\\t3600\\t IN \\tSOA\\tns10.domaincontrol.com.\\tdns.example.net. (\\r\\n\\t\\t\\t\\t\\t1\\r\\n\\t\\t\\t\\t\\t900\\r\\n\\t\\t\\t\\t\\t7200\\r\\n\\t\\t\\t\\t\\t604800\\r\\n\\t\\t\\t\\t\\t3600\\r\\n\\t\\t\\t\\t\\t) \\r\\n\\r\\n; A Records\\r\\n@\\t3600\\t IN \\tA\\t100.100.100.100\\r\\n\\r\\n; CNAME Records\\r\\nwww\\t3600\\t IN \\tCNAME\\t@\\r\\n\\r\\n; MX Records\\r\\n\\r\\n; TXT Records\\r\\n@\\t1800\\t IN \\tTXT\\t\\"MS=ms1111111\\"\\r\\n\\r\\n; SRV Records\\r\\n\\r\\n; AAAA Records\\r\\n\\r\\n; CAA Records\\r\\n\\r\\n; NS Records\\r\\n@\\t3600\\t IN \\tNS\\tns39.domaincontrol.com.\\r\\n@\\t3600\\t IN \\tNS\\tns40.domaincontrol.com.\\r\\n\\r\\n';
+        // Create the custom field
+        $goDaddyCustomField = SalesOrdersUtils::buildGoDaddyCustomFieldsForTransfer("MP-NNTJMBF6HPXR5XXC2JKCFWKJ64VZLBFQ", "testdomain123.com", "example@email.com", "First", "Last", "3065555555", "example@email.com", "First", "Last", "AuthCode", $zoneFile, "NameServer1", "NameServer2", "NameServer3");
+        $customFields = array($goDaddyCustomField);
+
+        // Create the order
+        $order = SalesOrdersUtils::buildOrder("ABC", "AG-123", $lineItems, $customFields);
+        $req->setOrder($order);
+
+        try {
+            $resp = $client->CreateAndActivateOrder($req);
+        } catch (SDKException $e) {
+            self::fail($e);
+        }
+        self::assertNotEmpty(
+            $resp->getOrderId(),
+            'expected order ID'
+        );
+    }
+
     public function testCreateAndActivateOrderForAddon() {
         // Setup the client
         $environment = getenv("ENVIRONMENT");

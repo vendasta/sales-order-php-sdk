@@ -161,4 +161,50 @@ class SalesOrdersUtils {
         return $goDaddyCustomField;
 
     }
+
+    /**
+     * Creates a CustomField for GoDaddy for a transfer order
+     *
+     * @param string $productId the app/product ID for the GoDaddy product
+     * @param string $domain the domain being purchased (ex. google.com)
+     * @param string $adminEmail the email of the domain admin (ex. user@example.com)
+     * @param string $adminFirstName the first name of the domain admin
+     * @param string $adminLastName the last name of the domain admin
+     * @param string $adminPhone the phone number for the domain admin
+     * @param string $ownerEmail the email of the domain owner
+     * @param string $ownerFirstName the first name of the domain owner
+     * @param string $ownerLastName the last name of the domain owner
+     * @param string $authCode the authorization code for the transfer
+     * @param string $zoneFile double escaped string containing the text in the zone file for the domain
+     * @param string $nameServer1 first custom name server if applicable. Leave this blank if keeping default name servers
+     * @param string $nameServer2 second custom name server if applicable. Leave this blank if keeping default name servers
+     * @param string $nameServer3 third custom name server if applicable. Leave this blank if keeping default name servers
+     * @return CustomField An initialized custom field for a GoDaddy order
+     */
+    public static function buildGoDaddyCustomFieldsForTransfer(string $productId, string $domain, string $adminEmail, string $adminFirstName, string $adminLastName, string $adminPhone, string $ownerEmail, string $ownerFirstName, string $ownerLastName, string $authCode, string $zoneFile, string $nameServer1, string $nameServer2, string $nameServer3): CustomField
+    {
+        $goDaddyCustomField = new CustomField();
+        $goDaddyCustomField->setProductId($productId);
+
+        $goDaddyDomain = self::buildField('domain', 'Domain Selection', $domain);
+        $goDaddyAdminEmail = self::buildField('email', 'Admin Email Address', $adminEmail);
+        $goDaddyAdminFirstName = self::buildField('first_name', 'Admin First Name', $adminFirstName);
+        $goDaddyAdminLastName = self::buildField('last_name', 'Admin Last Name', $adminLastName);
+        $goDaddyAdminPhone = self::buildField('phone', 'Admin Phone Number', $adminPhone);
+        $goDaddyOwnerEmail = self::buildField('shopper_email', 'Domain Owner Email', $ownerEmail);
+        $goDaddyOwnerFirstName = self::buildField('shopper_first_name', 'Domain Owner First Name', $ownerFirstName);
+        $goDaddyOwnerLastName = self::buildField('shopper_last_name', 'Domain Owner Last Name', $ownerLastName);
+        $goDaddyAuthCode = self::buildField('auth_code', 'Auth Code', $authCode);
+        $goDaddyZoneFile = self::buildField('zone_file', 'Zone File', $zoneFile, FieldType::TEXTAREA);
+        $goDaddyNameServer1 = self::buildField('nameserver1', 'Nameserver 1', $nameServer1);
+        $goDaddyNameServer2 = self::buildField('nameserver2', 'Nameserver 2', $nameServer2);
+        $goDaddyNameServer3 = self::buildField('nameserver3', 'Nameserver 3', $nameServer3);
+        $goDaddyIsTransfer = self::buildField('is_transfer', 'Purchased through a transfer',"true", FieldType::CHECKBOX);
+
+        $goDaddyFields = array($goDaddyDomain, $goDaddyAdminEmail, $goDaddyAdminFirstName, $goDaddyAdminLastName, $goDaddyAdminPhone, $goDaddyOwnerEmail, $goDaddyOwnerFirstName, $goDaddyOwnerLastName, $goDaddyAuthCode, $goDaddyZoneFile, $goDaddyNameServer1, $goDaddyNameServer2, $goDaddyNameServer3, $goDaddyIsTransfer);
+        $goDaddyCustomField->setFields($goDaddyFields);
+
+        return $goDaddyCustomField;
+
+    }
 }
